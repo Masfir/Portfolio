@@ -1,0 +1,79 @@
+{% extends "basic.html" %}
+{% block title %} Contact {% endblock title %}
+
+{% block stylecss %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+{% endblock stylecss %}
+
+{% block body %}
+
+
+<div class="container p-2"> 
+
+  <nav class="navbar bg-dark">
+    <form class="form-inline" action="{% url 'contact_search' %}" method="get">
+      <input class="form-control mb-2" type="search" placeholder="Search Name" aria-label="Search" name='search_item'>
+      <button class="btn btn-outline-danger mb-2" type="submit">Search</button>
+    </form>
+
+    <div class="mb-4">
+    <form action="{% url 'contact_search_id' %}" method="get"> 
+      <input type="text" name="min_id" maxlength="50" placeholder="min_Id" size="8"><strong><span class="text-white"> To </span></strong>
+      <input type="text" name="max_id" maxlength="50" placeholder="max_Id" size="8">
+      <button class="btn btn-outline-danger" type="submit" value="Check" > Check </button><br>
+    </form> 
+    <span class="typed text-white" data-typed-items="If you need put the ID range here!"></span>  
+    </div>
+  </nav>
+
+  <div class="row">
+    <div class="col-md-15">   
+
+      <table class="table">
+        <thead class="bg-warning text-center">
+          <h3 class="text-center mt-2"><strong>Contact Details</strong></h3>
+          
+          {% for message in messages %}
+
+          <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+            <strong>{{message}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>        
+          </div>
+          
+          {% endfor %}
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date & Time</th>
+            <th scope="col">Action</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for info in p reversed %}
+          <tr class="text-center">
+            <td>{{info.id}}</td>
+            <td>{{info.name}}</td>
+            <td>{{info.email}}</td>
+            <td>{{info.phonenumber}}</td>
+            <td>{{info.description}}</td>
+            <td>{{info.timeStamp}}</td>
+            <td><a href="{% url 'update' info.id %}">Update</a></td>
+            <td><a href="{% url 'delete' info.id %}">Delete</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>   
+  </div>
+</div>
+
+
+{% endblock body %}

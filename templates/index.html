@@ -1,0 +1,36 @@
+{% extends "basic.html" %}
+{% block title %} Masfir Ahmed Shezan {% endblock title %}
+
+{% block stylecss %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+{% endblock stylecss %}
+
+{% block hero %}
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column align-items-center">
+    <div class="hero-container" data-aos="fade-in">
+      <h1>Masfir Ahmed Shezan</h1>
+      <p>I'm a developer of <span class="typed" data-typed-items="Python, Django, MySQL, HTML-5, CSS, BOOTSTRAPE"></span></p>
+      
+    </div>
+  </section>
+
+{% endblock hero %}
+
+{% block body %}
+
+{% for message in messages %}
+
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>        
+</div>
+
+{% endfor %}
+    
+{% endblock body %}
