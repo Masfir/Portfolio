@@ -1,6 +1,6 @@
 # Portfolio
 
- https://masfir.github.io/portfolio/
+  https://masfir.github.io/Portfolio/
  
  # How To Run this project
  
